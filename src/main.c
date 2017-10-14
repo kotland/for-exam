@@ -1,52 +1,31 @@
 #include <stdio.h>
-#include <math.h>
+#include "calc.h"
 
-int main()
+int main(int argc, char** argv)
 {
-    	float a,b,c;
-    	printf("Insert a: ");
-    	scanf("%f", &a);
-	printf("\nInsert b: ");
-	scanf("%f", &b);
-	printf("\nInsert c: ");
-	scanf("%f", &c);
-    	if(a == 0)
-    	{
-        	if(b == 0)
-        	{
-            		if(c == 0)
-            		{
-                		printf("x - any cifres");
-            		}
-            		else
-            		{
-                		printf("Sqrt is no");
-            		}
-        	}
-        	else
-        	{
-            		printf ("x = %g", -c/b);
-		}
-    	}
-    	else
-    	{
-        	float d;
-        	d = b * b - 4 * a * c;
-        	if(d < 0)
-        	{
-            		printf("Sqrt is no");
-        	}
-        	else
-        	{
-            		if(d == 0)
-            		{
-                		printf("\nx = %g\n", -b/(2*a));
-            		}
-            		else
-            		{
-                		printf("\nX-1 = %g\n\nX-2 = %g",(-b+sqrt(d))/(2*a),(-b-sqrt(d))/(2*a));
-            		}
-        	}
-    	}
-    	return 0;
+    float a,b,c;
+    printf("Insert a: ");
+    scanf("%f", &a);
+    printf("\nInsert b: ");
+    scanf("%f", &b);
+    printf("\nInsert c: ");
+    scanf("%f", &c);
+    printf("\n");
+
+    double x1 = 0, x2 = 0;
+    int result = calculate(a,b,c,&x1,&x2);
+    
+    switch (result)
+    {
+        case -1:
+            printf("No roots\n");
+            break;
+        case 0:
+            printf("X1 = %g\n", x1);
+            break;
+        case 1:
+            printf("X-1 = %g\nX-2 = %g\n",x1,x2);
+            break;
+    }
+    return 0;
 }
